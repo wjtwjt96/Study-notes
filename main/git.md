@@ -115,41 +115,58 @@ Git的基本用法：
 
 15. git管理的是修改，不是管理的文件
 
-16. git分支的概念
+16. 分支管理
 
-    - git中的每次提交会构成一条时间线，head指向当前分支master，master指向当前时间线都最后一次提交的时间点。
+    1. git分支的概念
 
-    - git中的默认分支为master，master其实是一个指针，版本库里有head指针，head指向当前分支。git中的分支其实就是head 
-    - 新建的分支，就是创建一个新的指针，然后将head指针指向它，然后切换到它，就可以使用新的分支，master分支不会变。
+       - git中的每次提交会构成一条时间线，head指向当前分支master，master指向当前时间线都最后一次提交的时间点。
+       - git中的默认分支为master，master其实是一个指针，版本库里有head指针，head指向当前分支。git中的分支其实就是head 
+       - 新建的分支，就是创建一个新的指针，然后将head指针指向它，然后切换到它，就可以使用新的分支，master分支不会变。
 
-    [git分支](https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424)
+       [git分支](https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424?_blank)
 
-17. 创建分支
+    2. 创建分支
 
-    ```
-    git checkout -b dev    创建dev分支并切换到dev分支
-    相当于以下两步：
-    git branch dev     创建分支
-    git checkout dev   切换分支
-    git switch -c dev  切换分支
-    git switch master 
-    
-    git branch  查看分支
-    ```
+       ```
+       git checkout -b dev    创建dev分支并切换到dev分支
+       相当于以下两步：
+       git branch dev     创建分支
+       git checkout dev   切换分支
+       git switch -c dev  切换分支
+       git switch master 
+       
+       git branch  查看分支
+       ```
 
-18. 合并分支
+    3. 合并分支
 
-    ```
-    git merge dev   将dev分支合并到当前分支
-    ```
+       ```
+       git merge dev   将dev分支合并到当前分支
+       ```
 
-19. 删除分支
+    4. 删除分支
 
-    ```
-    $ git branch -d dev
-    ```
+       ```
+       $ git branch -d dev
+       ```
 
-20. 常用的vi命令
+    5. 分支管理策略
+
+       - 默认策略  （Fast forward模式）:就是将主分支的指针指向子分支的merge的时间点
+
+         ```
+         git merge dev 
+         ```
+
+       - 普通模式：将子分支的内容合并到主分支上后，重新新增一个commit点，提交；
+
+         ```
+         git merge --no-ff -m "merge with no-ff" dev
+         ```
+
+         
+
+17. 常用的vi命令
 
     - 一般模式切换到编辑模式
       - i:进入插入模式，在光标前插入 ；I：是在第一个非空格符处插入
