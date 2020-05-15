@@ -1,6 +1,8 @@
 Git study notes：
 
-1. ##### git组成部分
+1. #### git组成部分
+
+   - **Git 保存的不是文件的变化或者差异，而是一系列不同时刻的文件快照。**
 
    - git的操作的步骤描述：
 
@@ -19,7 +21,7 @@ Git study notes：
 
    - git管理的是修改，不是管理的文件
 
-2. ##### git常用基本操作：
+2. #### git常用基本操作：
 
    - 创建本地仓库
 
@@ -72,7 +74,10 @@ Git study notes：
      ```
      git  reset --hard HEAD^
      
-     git  reset --hard  <commit id>
+     git  reset --hard  <commit id>   此命令会将commit_id前的所有commit修改删除
+     
+     git reset<commit_id>    此命令不会将commit_id前的commit删除，而是会将修改回退到本地工作区
+     git push origin HEAD--force  	此步骤将服务器方也设置为相应的commit
      ```
 
      备注：
@@ -101,7 +106,7 @@ Git study notes：
      git rm <文件名>
      ````
 
-3. ##### 远程仓库
+3. #### 远程仓库
 
    - 生成SSH keys
 
@@ -138,26 +143,28 @@ Git study notes：
      git branch --set-upstream-to=origin/dev dev
      ```
 
-   4. 查看远程库信息
+   - 查看远程库信息
+
+     ```
+     git remote -v
+     
+     git remote
+     ```
+
+   - 创建与远程分支相对应的本地分支
+
+     ```
+     git checkout -b branch-name origin/branch-name
+     ```
+
+   - 在远程创建一个本地同名的分支
 
       ```
-   git remote -v
+      $ git push --set-upstream origin fix
       
       ```
 
-   git remote
-      ```
-   
-   - 创建与远程分支相对应的本地分支
-   
-      ```
-      git checkout -b branch-name origin/branch-name
-
-      ```
-   
-      ```
-
-4. ##### 分支管理
+4. #### 分支管理
 
    **git分支的概念：**
 
@@ -248,15 +255,18 @@ Git study notes：
          git cherry-pick <commit Id>
         ```
 
-   6. 强行删除分支
+   6. ##### 强行删除分支
 
       ```
       普通删除分支； git branch -d <name>
       当此分支还未合并时，就会
       git branch -D <name>
+      
+      删除远程分支：
+      git push origin--delete<branch-name>
       ```
 
-5. 标签Tag
+5. #### 标签Tag
 
    - 打新的tag
 
@@ -302,7 +312,50 @@ Git study notes：
 
         
 
-6. ##### 常用的vi命令
+6. #### git分支使用规范
+
+   1. ##### 推荐的分支管理：
+
+      - `master` 分支为主分支(保护分支)，禁止直接在master上进行修改代码和提交，此分支的代码可以随时被发布到线上；
+      - `develop` 分支为测试分支或者叫做合并分支，所有开发完成需要提交测试的功能合并到该分支，该分支包含最新的更改；
+      - `feature` 分支为开发分支，大家根据不同需求创建独立的功能分支，开发完成后合并到develop分支；
+      - `fix` 分支为bug修复分支，需要根据实际情况对已发布的版本进行漏洞修复；
+
+   2. **标签Tag管理：**Tag采用三段式：v版本.里程碑.序号（v2.3.1）
+      - 架构升级或架构重大调整，修改第1位
+      - 新功能上线或者模块大的调整，修改第2位
+      - bug修复上线，修改第3位
+
+   当然，可以根据实际情况来设计，比如项目特别大，可以使用四段表达Tag，项目比较小也可以使用二段式Tag，只要符合场景并有实际意义即可 ！
+
+   3. ##### 提交信息格式
+
+      **提交信息格式：**下面只是提供一种建议格式，大家可以根据自己的项目实际情况来定格式，只要**能把当前提交表达清楚,格式统一,方便快速阅读和定位**即可！
+
+      1. 建议中文示例：
+         - <新功能>(urllAnalyz) 添加解析url功能l
+         - <修改>(TestServiceImpl) 修改某功能的某个实现为另一个实现
+         - (TestUnti) 修复url特殊情况下解析失败问题 (issue#12)
+         - <重构>(getData) 重构获取数据的方法
+         - <测试>(getDataTest) 添加（修改、删除）获取数据的单元测试代码
+         - <文档>(doc)修改（添加、删除）文档
+
+      2. 建议的英文示例：
+         - feat：新功能（feature）
+         - style：格式
+         - fix：修补bug
+         - refactor：重构
+         - test：测试相关
+         - docs：文档（documentation）
+
+      3. 格式（type：scope：body：issue） ：<|新功能|修改|Bug修复|重构|测试>（影响模块）提交描述信息（#issue?）
+
+      4. 优点：
+         - 与github数据issue关联，便于通过issue获取更多信息
+         - commit 提交时，格式统一，便于后续快速准确定位提交
+         - 可以更好的将此次提交表述清楚
+
+7. #### 常用的vi命令
 
    - 编辑模式 切换到 一般模式
 
