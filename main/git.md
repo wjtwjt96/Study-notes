@@ -133,8 +133,11 @@ Git study notes：
      要克隆一个仓库，首先必须知道仓库的地址，然后使用`git clone`命令克隆。
      
      eg: git clone git@github.com:michaelliao/gitskills.git
+     
+   克隆分支仓库
+     git clone -b branchName  地址
      ```
-
+     
      **备注：Git支持多种协议，包括`https`，但`ssh`协议速度最快。**
      
    - 将本地分支与远程分支绑定
