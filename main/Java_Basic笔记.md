@@ -411,7 +411,7 @@ Javadoc  -d api -version -author 类全名
 
   	  StringBuffer sb = new StringBuffer();   
 		StringBuffer sb1 = new StringBuffer(10);   //创建指定长度的字符串缓冲区
-		StringBuffer sb2 = new StringBuffer("abc");//创建制定的字符串缓冲区
+		StringBuffer sb2 = new StringBuffer("abc");//创建指定的字符串缓冲区
 
 ​		sb.**length**();       //字符串长度
 
@@ -471,7 +471,7 @@ Javadoc  -d api -version -author 类全名
 
     ![](F:\Typora\picture\单项链表.png)
 
-  - 单向循环链表和单向列表的不同是，最后一个节点的next不是指向null，而是指向head节点，形成一个“环”。
+  - **单向循环链表**和单向列表的不同是，最后一个节点的next不是指向null，而是指向head节点，形成一个“环”。
 
     ![](F:\Typora\picture\单项循环链表.png)
 
@@ -554,7 +554,7 @@ Javadoc  -d api -version -author 类全名
    	}
    ```
 
-- List集合特有的迭代器 **listIterator()** (能够在迭代器遍历的时候给集合添加新的元素)
+- **List集合特有的**迭代器 **listIterator()** (能够在迭代器遍历的时候给集合添加新的元素)
 
    ```java
    	ListIterator lit = list.listIterator();
@@ -722,14 +722,13 @@ Javadoc  -d api -version -author 类全名
      	public void show(String t) {
      		System.out.println(t);
      	}
-     
      }
      
      interface a<T> {                  //声明一个带泛型的接口
      	void show(T t);
      }
      ```
-
+   
 5. ##### 泛型通配符
 
    - <?>
@@ -820,16 +819,16 @@ Javadoc  -d api -version -author 类全名
 
 - 集合转数组，使用toArray(T a[])方法，传入泛型。长度小于等于集合的size时，数组长度等于集合；大于时，数组长度为泛型定义长度
 
-  		ArrayList<String> list = new ArrayList<String>();
-    			list.add("a");
-    			list.add("b");
-    			list.add("c");
-    		String[] array = list.toArray(new String[3]);             //泛型定义长度为3，大于3时数组的长度就为相应的值
-    		for(Object object : array){
-    			System.out.println(object);
-    		}
-
-  
+  		```java
+    ArrayList<String> list = new ArrayList<String>();
+    list.add("a");
+    list.add("b");
+    list.add("c");
+    String[] array = list.toArray(new String[3]);             //泛型定义长度为3，大于3时数组的长度就为相应的值
+    for(Object object : array){
+    	System.out.println(object);
+    }
+    ```
 
 ####   Set集合
 
@@ -852,7 +851,7 @@ Javadoc  -d api -version -author 类全名
 ##### 4. LinkedHashSet
 
 - HashSet的子类，基于链表实现的HashSet,使HashSet不在无序。存入和取出的顺序一样；
-- 作为Hashset的子类，无索引、元素唯一（不重复）
+- 作为HashSet的子类，无索引、元素唯一（不重复）
 
 ##### 5. TreeSet
 
@@ -921,7 +920,7 @@ Javadoc  -d api -version -author 类全名
 
 - **通过获取所有的key键值遍历value**
 
-  ```
+  ```java
   	Map<String, Integer> map = new HashMap();
   	map.put("吴江涛", 23);
   	map.put("窦瑞琳", 19);
@@ -1148,10 +1147,10 @@ Javadoc  -d api -version -author 类全名
 
 ​	**IO流**是指不同设备之间进行的**数据传输**，Java中操作数据都是通过流的方式
 
- - 根据操作的数据类型不同分为：字节流和字符流
-   	- 字节流：可以操作任何数据，因为计算机所有数据都是以字节的形式存储
+ - 根据操作的**数据类型**不同分为：**字节流** 和 **字符流**
+   	 - 字节流：可以操作任何数据，因为计算机所有数据都是以字节的形式存储
     - 字符流：操作纯字符数据，方便
-	- 根据数据的传输方向分为：输入流和输出流
+ - 根据数据的传输方向分为：**输入流 **和 **输出流**
 
 #### 2. IO流——字节流基类
 
@@ -1203,13 +1202,13 @@ Javadoc  -d api -version -author 类全名
 ​	带缓冲区的输入输出流
 
  - **BufferInputStream** 
-   	- 缓冲区输入流，具有一个缓冲区（数组），大小为1024*8；
-      	- 操作缓冲区输入流进行读取时，先将读取的数据存到缓冲区中，当缓冲区数据满了后，再将缓冲区的数据一个一个输入出去。当缓冲区变为空后，在进行下一步操作；
-    
+    - 缓冲区输入流，具有一个缓冲区（数组），大小为1024*8；\
+    - 操作缓冲区输入流进行读取时，先将读取的数据存到缓冲区中，当缓冲区数据满了后，再将缓冲区的数据一个一个输入出去。当缓冲区变为空后，在进行下一步操作；
+
  - **BufferOutputStream**
-   	- 缓冲区输处流，也具有一个缓冲区（数组），大小为1024*8；
-      	- 先将数据写入到缓冲去中，当缓冲区数据填满后，再一次性写入到文件中；然后在进行下一次写入缓冲区操作，知道写入完成；
-    
+    - 缓冲区输处流，也具有一个缓冲区（数组），大小为1024*8；
+    - 先将数据写入到缓冲去中，当缓冲区数据填满后，再一次性写入到文件中；然后在进行下一次写入缓冲区操作，直到写入完成；
+
     ```java
     	BufferedInputStream bis = new BufferedInputStream(new FileInputStream("aaa.txt"));
     	BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("aa.txt"));
@@ -1223,7 +1222,7 @@ Javadoc  -d api -version -author 类全名
     	bis.close();
     	bos.close();
     ```
-    
+
 - **flush()和close()**
   - 因为缓冲去输出流，需要等缓冲区填满后才会进行数据写入到文件操作。那么存在有时数据不足以填满数据缓冲区，因此需要刷新缓冲区，手动促进缓冲区数据写入文件
   - **flush()**  刷新缓冲区数据(手动将缓冲区数据写入文件)，调用后可以继续写入数据；
@@ -1325,27 +1324,29 @@ Javadoc  -d api -version -author 类全名
 
    将对象转化为字节数据，输出
 
-   		//1.将对象写入到文件中
-   		Person p1 = new Person("吴江涛",23);
-   		Person p2 = new Person("窦瑞林", 19);
-   		
-   		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("a.txt"));
-   		oos.writeObject(p1);
-   		oos.writeObject(p2);   //将对象写出
-   		
-   		oos.close();
-   		
-   		//2.将对象读取出来
-   		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("a.txt"));
-   		Person person = (Person) ois.readObject();
-   		Person person2 = (Person) ois.readObject();
-   		System.out.println(person);
-   		System.out.println(person2);
+   ```java
+   	//1.将对象写入到文件中
+   	Person p1 = new Person("吴江涛",23);
+   	Person p2 = new Person("窦瑞林", 19);
+   	
+   	ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("a.txt"));
+   	oos.writeObject(p1);
+   	oos.writeObject(p2);   //将对象写出
+   	
+   	oos.close();
+   	
+   	//2.将对象读取出来
+   	ObjectInputStream ois = new ObjectInputStream(new FileInputStream("a.txt"));
+   	Person person = (Person) ois.readObject();
+   	Person person2 = (Person) ois.readObject();
+   	System.out.println(person);
+   	System.out.println(person2);
+   ```
 
 - **注意事项：** 
 
   - 对象必须事项**Serializable**接口才能被序列化；
-  - 可以自定义序列化Id,id代表的是当前对象序列化的版本号，如果不自定义，Java会默认自动定义；
+  - 可以自定义序列化Id，id代表的是当前对象序列化的版本号，如果不自定义，Java会默认自动定义；
 
 #### 13.数据输入输出流
 
@@ -1426,11 +1427,11 @@ Javadoc  -d api -version -author 类全名
 
     - **线程**是操作系统能够进行运算调度的最小单位，它被包含在进程之中，是进程中的实际运作单位；线程就像是是一个程序执行的一条路径，每个路径的执行就构成了一个进程；
 
-      	- 线程是可以使用所属进程内的共享资源
+       - 线程是可以使用所属进程内的共享资源
 
-   - 线程是进程的一个实体，是进程的一条执行路径。
+      - 线程是进程的一个实体，是进程的一条执行路径。
 
-     线程是进程的一个特定执行路径。当一个线程修改了进程的资源，它的兄弟线程可以立即看到这种变化。
+      线程是进程的一个特定执行路径。当一个线程修改了进程的资源，它的兄弟线程可以立即看到这种变化。
    
 - ##### 多线程
 
@@ -1506,7 +1507,7 @@ Javadoc  -d api -version -author 类全名
 
   - 通过实现Callable接口，实现call()方法，（call()方法为线程的执行体，有返回值），然后使用FutureTask进行包装，再将其传入Thread类，生成线程对象，调用start()方法开启线程；
 
-    		```
+    		```java
       public class Demo2_Callable {
           public static void main(String[] args) throws Exception {
               // 创建Callable子类对象实例
@@ -1557,7 +1558,7 @@ Javadoc  -d api -version -author 类全名
 
   - **join**()  、join(int 毫秒值)
 
-    		```
+    		```java
       Thread t1 = new Thread(){
         		@Override 
         		public void run(){
@@ -1582,7 +1583,7 @@ Javadoc  -d api -version -author 类全名
   
 - **礼让线程** 
   
-  - **yield**()                //让出cpu资源让其他线程优先执行
+  - **yield**()                //让出cpu资源让其他线程优先执行（**只能让同优先级或者优先级更高的线程执行**）
 - **设置线程优先级**
   
   - t2.**setPriority**(int newPriority);    //设置线程优先级，从1-10层优先级，数字越大优先级越高；
@@ -1604,40 +1605,42 @@ Javadoc  -d api -version -author 类全名
 
 ​				}  
 
-	public class Demo4_synchronized {
-	
-		public static void main(String[] args) {
-			Print p = new Print();
-			
-			new Thread() {               //通过匿名内部类创建线程对象
-				@Override
-				public void run() {      //重写线程的run()方法
-					p.print1();    
-				}
-			}.start();                   //开启线程
-			
-			new Thread() {
-				@Override
-				public void run() {
-					p.print2();    
-				}
-			}.start();
-		}
-	
+```java
+public class Demo4_synchronized {
+
+	public static void main(String[] args) {
+		Print p = new Print();
+		
+		new Thread() {               //通过匿名内部类创建线程对象
+			@Override
+			public void run() {      //重写线程的run()方法
+				p.print1();    
+			}
+		}.start();                   //开启线程
+		
+		new Thread() {
+			@Override
+			public void run() {
+				p.print2();    
+			}
+		}.start();
 	}
-	
-	class Print{
-		public void print1() {
-			synchronized (this) {   //this代表同步锁对象，这里是指当前对象
-				System.out.println("我爱小猪窦瑞林");
-			}
-		}
-		public void print2() {
-			synchronized (this) {
-				System.out.println("小猪窦瑞林是我的小宝贝");
-			}
+
+}
+
+class Print{
+	public void print1() {
+		synchronized (this) {   //this代表同步锁对象，这里是指当前对象
+			System.out.println("我爱小猪窦瑞林");
 		}
 	}
+	public void print2() {
+		synchronized (this) {
+			System.out.println("小猪窦瑞林是我的小宝贝");
+		}
+	}
+}
+```
    - **注意：** 多个线程必须具有相同的锁对象
         - 非静态的方法中的代码块的锁是**this**
         - 静态方法中的代码块的锁是 **当前对象的字节码文件**
@@ -1647,8 +1650,8 @@ Javadoc  -d api -version -author 类全名
 - 由**synchronized**关键字修饰的方法为同步方法
 
 - 多个线程访问共享资源时，必须一个同步方法执行完后才能执行另个方法
-	   	
-  		
+	
+    ```java
     	class Print {
         	         private static Integer flag = 1;
         	   		public synchronized static void print1() throws InterruptedException {
@@ -1671,6 +1674,9 @@ Javadoc  -d api -version -author 类全名
         	  			Print.class.notify(); // 唤醒线程
         	  		}
         	  	}
+       ```
+     
+     
 
 #### 8. 死锁
 
@@ -1690,10 +1696,12 @@ Javadoc  -d api -version -author 类全名
 
 ​	Runtime是一个单例设计模式类，运行时类可以获取当前Java程序相关的运行时对象。
 
-		Runtime r = Runtime.getRuntime();           //获取和当前java程序有关的运行时对象
-		//执行字符串命令（是指cmd窗口下执行的命令语句）
-		//r.exec("shutdown -s -t 300"); 			//设置五分钟后关闭电脑           
-		r.exec("shutdown -a");                      //取消五分钟后关闭电脑
+```java
+	Runtime r = Runtime.getRuntime();           //获取和当前java程序有关的运行时对象
+	//执行字符串命令（是指cmd窗口下执行的命令语句）
+	//r.exec("shutdown -s -t 300"); 			//设置五分钟后关闭电脑           
+	r.exec("shutdown -a");                      //取消五分钟后关闭电脑
+```
 #### 10. Timer定时器类
 
 ​	**Timer**可以设置定时器任务，类似于闹钟
@@ -1883,7 +1891,7 @@ class MyTimerTask extends TimerTask{          //继承TimerTask定时器任务�
 
   **生命周期原理图：**
 
-  ![](G:\Typroa\picture\线程生命周期.jpg)
+  ![](..\pic\线程生命周期.jpg)
 
   
 
@@ -1949,6 +1957,42 @@ class MyTimerTask extends TimerTask{          //继承TimerTask定时器任务�
           	}
        ```
 
+#### 16. **volatile** **关键字的作用（变量可见性、禁止重排序）**
+
+Java 语言提供了一种稍弱的同步机制，即 **volatile** 变量，用来确保将变量的更新操作通知到其他线程。volatile 变量具备两种特性，volatile 变量不会被缓存在寄存器或者对其他处理器不可见的地方，因此在读取 volatile 类型的变量时总会返回最新写入的值。
+
+1. ##### **变量可见性**
+
+   其一是保证该变量对所有线程可见，这里的可见性指的是当一个线程修改了变量的值，那么新的值对于其他线程是可以立即获取的。
+
+2. **禁止重排序**
+
+   volatile 禁止了指令重排。 
+
+3. **比** **sychronized** **更轻量级的同步锁**
+
+   在访问 volatile 变量时不会执行加锁操作，因此也就不会使执行线程阻塞，因此 volatile 变量是一种比 sychronized 关键字更轻量级的同步机制。volatile 适合这种场景：一个变量被多个线程共享，线程直接给这个变量赋值。
+
+#### 17. **ThreadLocal** **作用（****线程本地存储）**
+
+ThreadLocal 的作用是提供线程内的局部变量，这种变量在线程的生命周期内起作用，减少同一个线程内多个函数或者组件之间一些公共变量的传递的复杂度。局部变量的本地线程副本，实现多线程之间不共享数据，避免数据异常。
+
+#### 18. **synchronized** **和** **ReentrantLock** **的区别**
+
+##### **两者的共同点：**
+
+	1. 都是用来协调多线程对共享对象、变量的访问
+ 	2. 都是可重入锁，同一线程可以多次获得同一个锁
+
+3. 都保证了可见性和互斥性
+
+##### 两者的不同点：**
+
+1. ReentrantLock 显示的获得、释放锁，synchronized 隐式获得释放锁、
+2. ReentrantLock 是 API 级别的，synchronized 是 JVM 级别的
+3. ReentrantLock 通过 Condition 可以绑定多个条件，实现多路通知
+4. 底层实现不一样， **synchronized 是同步阻塞**，使用的是**悲观并发策略**；**lock 是同步非阻塞**，采用的是**乐观并发策略**
+5. synchronized 在发生异常时，会自动释放线程占有的锁，因此不会导致死锁现象发生；而 ReentrantLock 在发生异常时，如果没有主动通过 unLock()去释放锁，则很可能造成死锁现象，因此使用 Lock 时需要在 finally 块中释放锁。
 
 ### 网络编程
 
@@ -1998,7 +2042,9 @@ class MyTimerTask extends TimerTask{          //继承TimerTask定时器任务�
 
   - UDP
 
-    UPD是一种面向无连接的网络协议，不保证数据一定能传到，因此数据不安全；因为不需要先建立链接，所以传输速度快。
+    UPD是一种面向无连接的网络协议，不保证数据一定能传到，因此不能保证数据完整；不需要先建立链接，传输速度较快，
+
+    基于数据报传输。
 
   - TCP
 
@@ -2017,7 +2063,7 @@ class MyTimerTask extends TimerTask{          //继承TimerTask定时器任务�
     - ##### 为什么不是两次握手？
 
       因为为了防止客户端发送的已失效的连接请求报文，突然又发送到服务器端，从而导致浪费资源；
-
+  
       **解析：**客户端A发送的请求连接报文，可能因为网络堵塞或其他的一些原因导致报文丢失；此时A没有收到服务端B的回应，A会再次发送 请求，这次请求正常到达B,并完成连接，完成了数据交互；此时之前丢失的报文，可能因网络问题解决，从而发送到了B，服务器B以为A再次发送请求并给与回应，进入等待接收模式。如果没有第三次握手，B会一直等待A传输数据；但此时A根本没有发送请求所有并不会发送数据，B一直等待从而就会浪费资源；三次握手正好能解决这个问题；
 
 #### 6. Socket套接字
@@ -2398,7 +2444,7 @@ socket.close();va
   - **InvocationHandler接口**的实现类实现了invoke （）方法，定义了想要给被代理对象所附加的操作
 
   	```java
-  		//InvocationHandler的实现类，定义JDK动态代理的核心代码  
+  	//InvocationHandler的实现类，定义JDK动态代理的核心代码  
   	public class MyInvocationHandler implements InvocationHandler{
   	    private Object obj;
   	    public MyInvocationHandler(Object obj) {
@@ -2413,14 +2459,12 @@ socket.close();va
   		 	System.out.println("权限校验");
   			method.invoke(obj, args);
   			System.out.println("日志记录");
-  			
   			return null;
   		}
   	}
   	//定义User接口
   	public interface User {
   		public void login();
-  	
   		public void buy();
   	}
   	
@@ -2475,7 +2519,7 @@ socket.close();va
 ### JDK1.8新特性
 
 1. 接口中可以写方法体，非静态方法，必须要default修饰；
-2. **重量级新特性：**Lambda表达式
+2.  **重量级新特性：**Lambda表达式
 
 #### 1. 函数式接口
 
@@ -2515,23 +2559,23 @@ socket.close();va
      ```java
      public class Demo02_Lambda {    
      	public static void main(String[] args) {        
-     	Person[] arr = new Person[]{               
-         	new Person("吴江涛", 22),                
-         	new Person("窦瑞林", 19),                
-         	new Person("年后", 15)        
-         };        
-         //使用匿名内部类的方式实现Comparator接口
-         /* Arrays.sort(arr, new Comparator<Person>() {                
-         	@Override                
-         	public int compare(Person o1, Person o2) {                    
-         		return o1.getAge() - o2.getAge();                
-         	}            
-         });*/        
-         //使用Lambda表达式实现        
-         Arrays.sort(arr,(Person p1, Person p2) -> {return p1.getAge() - p2.getAge();        });        
-         for (Person person : arr) {
-         	System.out.println(person);        
-         	}    
+             Person[] arr = new Person[]{               
+                 new Person("吴江涛", 22),                
+                 new Person("窦瑞林", 19),                
+                 new Person("年后", 15)        
+             };        
+             //使用匿名内部类的方式实现Comparator接口
+             /* Arrays.sort(arr, new Comparator<Person>() {                
+                 @Override                
+                 public int compare(Person o1, Person o2) {                    
+                     return o1.getAge() - o2.getAge();                
+                 }            
+             });*/        
+             //使用Lambda表达式实现        
+             Arrays.sort(arr, (Person p1, Person p2) -> {return p1.getAge() - p2.getAge();});        
+             for (Person person : arr) {
+                 System.out.println(person);        
+             }    
          }
      }
      ```
@@ -2592,7 +2636,7 @@ socket.close();va
    
        public static void main(String[] args) {
            String[] arr = {"a","cccc","bv","dddddd"};
-           Arrays.sort(arr,getComparator());
+           Arrays.sort(arr, getComparator());
    
            for (String s : arr) {
                System.out.println(s);
@@ -2673,10 +2717,9 @@ Stream流用来将对集合和数组简化操作。解决集合和数组存在�
 **注意：**Stream流是一个集合元素的函数模型；集合元素是没有真正被操作的，只有当结束方法执行的时候，整个模型才会按照指定的策略进行操作。得益于Lambda的延时加载特性。
 
 - **Stream流式一个来自数据源的元素队列**
-
-  - 元素式特定类型的对象，形成一个队列。
+- 元素式特定类型的对象，形成一个队列。
   - 数据源是流的来源，可以是集合、数组等。
-
+  
 - **Stream流的两个基础特征：**
 
   - **Pipelining：**中间操作都会返回新的流对象，多个操作串联成一个管道，如流式风格(fluent style);这样可以优化操作；
@@ -2881,7 +2924,6 @@ Stream流用来将对集合和数组简化操作。解决集合和数组存在�
          public class Demo1 {
             	
              public static void main(String[] args) {
-         
                  // 因为方法为静态的，所以直接通过类名调用
                  Singleton s = Singleton.getInstance();
              }
@@ -2903,10 +2945,10 @@ Stream流用来将对集合和数组简化操作。解决集合和数组存在�
              }
          }
          ```
-
-    - **第二种：单例设计的延迟加载模式（懒汉式）**
-
-         ```java
+         
+- **第二种：单例设计的延迟加载模式（懒汉式）**
+    
+     ```java
          //单例模式延迟加载模式
          //好处：在使用时才去创建对象，节省空间
          class Singleton {
@@ -2927,10 +2969,10 @@ Stream流用来将对集合和数组简化操作。解决集合和数组存在�
              }
          }
          ```
-
-    - **第三种：私有常量**
-
-      			```java
+    
+- **第三种：私有常量**
+    
+  			```java
          //私有常量模式
          class Singleton {
              // 1.私有构造方法，外部类不能访问该对象
@@ -2941,7 +2983,7 @@ Stream流用来将对集合和数组简化操作。解决集合和数组存在�
              public static final Singleton s = new Singleton();
          }
          ```
-
+    
 - ##### 饿汉式和懒汉式的区别
 
   - 饿汉式是以空间换时间，懒汉式是以时间换空间；推荐使用饿汉式，时间珍贵；
