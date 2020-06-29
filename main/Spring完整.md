@@ -152,7 +152,7 @@ Spring是一款分层的 full-stack 轻量级框架。核心为：控制反转IO
    7. 如果Bean实现了InitializingBean接口，则会回调该接口的afterPropertiesSet()方法
    8. 如果Bean配置了init-method方法，则会执行init-method配置的方法，
    9. 如果有Bean实现了BeanPostProcessor接口，则会回调该接口的postProcessAfterInitialization()方法，
-   10. 经过流程9之后，就可以正式使用该Bean了,对于scope为singleton的Bean,Spring的ioc容器中会缓存一份该bean的实例，而对于scope为prototype的Bean,每次被调用都会new一个新的对象，期生命周期就交给调用方管理了，不再是Spring容器进行管理了
+   10. 经过流程9之后，就可以正式使用该Bean了,对于scope为singleton的Bean,Spring的ioc容器中会缓存一份该bean的实例，而对于scope为prototype的Bean,每次被调用都会new一个新的对象，生命周期就交给调用方管理了，不再是Spring容器进行管理了
    11. 容器关闭后，如果Bean实现了DisposableBean接口，则会回调该接口的destroy()方法，
    12. 如果Bean配置了destroy-method方法，则会执行destroy-method配置的方法，至此，整个Bean的生命周期结束
 
@@ -180,7 +180,7 @@ Spring是一款分层的 full-stack 轻量级框架。核心为：控制反转IO
 
 8. ##### Spring的自动装配
 
-   在spring中，对象无需自己查找或创建与其关联的其他对象，由容器负责把需要相互协作的对象引用赋予各个对象，使用autowire来配置自动装载模式。
+   在spring中，对象无需自己查找或创建与其关联的其他对象，由容器负责把需要相互协作的对象引用赋予各个对象，使用**autowire**来配置自动装载模式。
 
    在Spring框架xml配置中共有5种自动装配：
 
@@ -203,14 +203,13 @@ Spring是一款分层的 full-stack 轻量级框架。核心为：控制反转IO
    1. **BeanFactory：**是Spring里面最底层的接口，包含了各种Bean的定义，读取bean配置文档，管理bean的加载、实例化，控制bean的生命周期，维护bean之间的依赖关系。
 
    2. **ApplicationContext接口，**作为BeanFactory的派生，除了提供BeanFactory所具有的功能外，还提供了更完整的框架功能：
-
-      - 继承MessageSource，因此支持国际化。
-
-      - 统一的资源文件访问方式。
+- 继承MessageSource，因此支持国际化。
+      
+- 统一的资源文件访问方式。
       -  提供在监听器中注册bean的事件。
       - 同时加载多个配置文件。
       - 载入多个（有继承关系）上下文 ，使得每一个上下文都专注于一个特定的层次，比如应用的web层。
-
+   
 10. ##### Spring 框架中都用到了哪些设计模式？
 
     1. 工厂模式：BeanFactory就是简单工厂模式的体现，用来创建对象的实例；
@@ -386,16 +385,16 @@ Spring是一款分层的 full-stack 轻量级框架。核心为：控制反转IO
          - **属性：**name：bean的id；可以使用spEl表达式
       
    4. ###### 用于限定Bean范围的
-   
+
       1. @Scope
          - **作用：**限定bean的返回
          - **属性：**value：作用范围
-   
+
    5. ###### 用于Bean的生命周期：
-   
+
       - @PreDestory
-   - @PostConstruct
-   
+      - @PostConstruct
+
 2. ##### 基于全注解开发
 
    **基于全注解开发是将xml文件的的内容转换为配置类，然后通过注解的方式实现。**
@@ -589,18 +588,18 @@ Spring是一款分层的 full-stack 轻量级框架。核心为：控制反转IO
         @Around("pt1()")
          public Object around(ProceedingJoinPoint joinPoint){
             Object obj = null;
-         try {
-                Object[] args = joinPoint.getArgs();
-         this.beginTransation();
-                obj= joinPoint.proceed(args);
-         this.commit();
-                return obj;
-            } catch (Throwable throwable) {
-         this.rollback();
-                throwable.printStackTrace();
-            } finally {
-                this.realease();
-            }
+             try {
+                    Object[] args = joinPoint.getArgs();
+                    this.beginTransation();
+                    obj= joinPoint.proceed(args);
+                    this.commit();
+                    return obj;
+                } catch (Throwable throwable) {
+                    this.rollback();
+                    throwable.printStackTrace();
+                } finally {
+                    this.realease();
+                }
             return obj;
         }
         ```
@@ -629,7 +628,7 @@ Spring是一款分层的 full-stack 轻量级框架。核心为：控制反转IO
               <aop:after-returning method="realease" pointcut-ref="pt1"/>
           </aop:aspect>
       </aop:config>
-       ```
+      ```
 
 8. ###### AOP注解开发
 
