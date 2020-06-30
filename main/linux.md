@@ -426,7 +426,7 @@ rpm  -ivh  要安装的包     //安装
 2. 检测是否安装了jdk
    
    ```java
-   rpm -ga | grep jdk
+   rpm -qa | grep jdk
    ```
    
 3. 如果有就卸载
@@ -463,19 +463,15 @@ rpm  -ivh  要安装的包     //安装
    2. 在末尾行添加
    
       #set Java environment
-   
+      //jdk解压路径
       JAVA_HOME=/usr/local/src/java
-   
       CLASSPATH=.:$JAVA_HOME/lib.tools.jar
-   
-      PATH=$JAVA_HOME/bin:$PATH
-   
+      PATH=$PATH:$JAVA_HOME/bin
+      //导入环境变量
       export  JAVA_HOME  CLASSPATH  PATH
    
    3. 保存退出
-   
    4. 重新加载配置文件
-   
       source  /etc/profile    //使更改的配置立即生效        
    ```
 
