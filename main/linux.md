@@ -475,9 +475,39 @@ rpm  -ivh  要安装的包     //安装
       source  /etc/profile    //使更改的配置立即生效        
    ```
 
+#### 开放Linux端口
+
+```java
+1. 查看端口是否开放
+firewall-cmd --query-port=8080/tcp   //开启：yes；未开启：no
+
+2.查看防火墙状态
+systemctl status firewalld   //查看防火墙
+systemctl start firewalld    //开启防火墙
+systemctl stop firewalld     //关闭防火墙
+
+3. 开启指定端口
+firewall-cmd --add-port=8080/tcp --permanent
+
+4. 重启载入添加的端口：
+firewall-cmd --reload
+
+5. 关闭指定端口：
+firewall-cmd  --permanent --remove-port=8080/tcp
+```
+
+
+
 #### 安装mysql:
 
+https://www.cnblogs.com/bill89/p/10975615.html
+
 ```
+复制并解压压缩包
+新建用户、用户组
+改变权限
+
+
 1. 查看mysql的服务状态  service  mysql  status
   启动mysql：service  mysql  start 
   停止mysql：service  mysql  stop
@@ -506,8 +536,11 @@ rpm  -ivh  要安装的包     //安装
 
 ```
 1. 创建文件夹
+	mkdir tomcat
 2. 复制到文件夹
+	cp 
 3. 解压
+	tar -xvf 压缩包 -C 解压路径
 4. 运行
      方式1：  sh  startup.sh
      方式2：  ./startup.sh
